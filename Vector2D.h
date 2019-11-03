@@ -1,3 +1,6 @@
+#ifndef VECTOR_2D
+#define VECTOR_2D
+
 #include <iostream>
 using namespace std;
 
@@ -12,4 +15,7 @@ class Vector2D
 	Vector2D(double in_x, double in_y);
 };
 
+Vector2D operator * (Vector2D, double);
+ostream& operator << (ostream&, Vector2D);
 
+#endif

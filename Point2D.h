@@ -1,4 +1,8 @@
+#ifndef POINT_2D
+#define POINT_2D
+
 #include <iostream>
+#include "Vector2D.h"
 using namespace std;
 
 class Point2D
@@ -14,4 +18,7 @@ class Point2D
 
 double GetDistanceBetween(Point2D, Point2D);
 
-ostream& operator << (ostream& out, Point2D pt);
+ostream& operator << (ostream&, Point2D);
+Point2D operator + (Point2D, Vector2D);
+
+#endif

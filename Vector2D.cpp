@@ -9,7 +9,6 @@ Vector2D::Vector2D() // Default
 	y = 0;		
 }
 
-
 Vector2D::Vector2D(double in_x, double in_y)
 {
 	x = in_x;
@@ -17,5 +16,20 @@ Vector2D::Vector2D(double in_x, double in_y)
 }
 
 
-// Non-MemberOverloaded Operators
-Vector2D::Vector2D operator * ()
+// Non-Member Overloaded Operators
+Vector2D operator * (Vector2D v1, double d)
+{
+	// Multiplies vector components by a double
+	// Returns a vector
+
+	Vector2D out((v1.x * d), (v1.y * d));
+	return out;
+}
+
+ostream& operator << (ostream& out, Vector2D v)
+{
+	// Formats printing of vectors
+
+	out << "<" << v.x << "," << v.y << ">";
+	return out;
+}
