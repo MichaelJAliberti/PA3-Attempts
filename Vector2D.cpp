@@ -20,10 +20,19 @@ Vector2D::Vector2D(double in_x, double in_y)
 Vector2D operator * (Vector2D v1, double d)
 {
 	// Multiplies vector components by a double
-	// Returns a vector
+	// Returns a new vector
 
 	Vector2D out((v1.x * d), (v1.y * d));
 	return out;
+}
+
+Vector2D operator / (Vector2D v1, double d)
+{
+  // Divides vector componenets by a double
+  // Returns a new vector
+
+  Vector2D out((v1.x/d), (v1.y/d));
+  return out;
 }
 
 ostream& operator << (ostream& out, Vector2D v)

@@ -45,3 +45,12 @@ Point2D operator + (Point2D p1, Vector2D v1)
 	Point2D out((p1.x + v1.x), (p1.y + v1.y));
 	return out;
 }
+
+Vector2D operator - (Point2D p1, Point2D p2)
+{
+  // Subtracts corresponding componenets of two points
+  // Returns a new vector
+
+  Vector2D out((p1.x - p2.x), p1.y - p2.y);
+  return out;
+}

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Point2D.h"
 #include "Vector2D.h"
-//#include "Vector2d.h"
+#include "GameObject.h"
 
 using namespace std;
 
@@ -19,8 +19,18 @@ int main()
 
 	cout << distance << endl;
 	cout << p1 << " " << p2 << endl;
+	cout << (p1 + v1) << endl;
+	cout << (p1 - p2) << endl;
+	cout << (v1/2) << " " << v1*2 << endl;
 
 	cout << v3 << endl;
 	
+	GameObject g1(p1, 3, 'z');
+	cout << g1.GetLocation() << endl;
+	cout << g1.GetId() << endl;
+	cout << g1.GetState() << endl;
+	g1.ShowStatus();
+	
+
 	return 0;
 }
