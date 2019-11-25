@@ -2,7 +2,6 @@
 #define GAME_OBJECT
 
 #include "Point2D.h"
-using namespace std;
 
 // Class
 class GameObject
@@ -17,11 +16,15 @@ public:
 	// Public constructors	
 	GameObject(char in_code);
 	GameObject(Point2D in_loc, int in_id, char in_code);
+	// Destructor
+	virtual ~GameObject();
 	// Public functions
 	Point2D GetLocation();
 	int GetId();
 	bool GetState();
-	void ShowStatus();
+	virtual void ShowStatus();
+	virtual bool Update() = 0;
+	virtual bool ShouldBeVisible() = 0;
 };
 
 #endif

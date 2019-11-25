@@ -26,32 +26,38 @@ GameObject::GameObject(Point2D in_loc, int in_id, char in_code)
 }
 
 
+// Destructor
+GameObject::~GameObject()
+{
+	cout << "GameObject destructed." << endl;
+}
+
+
 // Member Functions
 Point2D GameObject::GetLocation()
 {
 	// Returns the location of the GameObject
 	
-	return this->location;
+	return location;
 }
 
 int GameObject::GetId()
 {
 	// Returns the id_num of the GameObject
 
-	return this->id_num;
+	return id_num;
 }
 
 bool GameObject::GetState()
 {
 	// Returns the state of the GameObject
 
-	return this->state;
+	return state;
 }
 
 void GameObject::ShowStatus()
 {
 	// Prints the status of the GameObject 	
 
-	cout << this->display_code << " Status: " << this->id_num 
-	<< " located at " << this->location << endl;
+	cout << display_code << id_num << " at " << location;
 }
