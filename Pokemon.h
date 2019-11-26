@@ -43,6 +43,8 @@ public:
 	bool ShouldBeVisible();
 	void ShowStatus();
 	bool Update();
+	// Added member functions
+	string GetName();
 protected:
 	bool UpdateLocation();
 	void SetupDestination(Point2D dest);

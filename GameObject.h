@@ -25,6 +25,9 @@ public:
 	virtual void ShowStatus();
 	virtual bool Update() = 0;
 	virtual bool ShouldBeVisible() = 0;
+	void DrawSelf(char* ptr);
+	// Added member functions
+	char GetDisplayCode();
 };
 
 #endif

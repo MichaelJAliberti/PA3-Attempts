@@ -61,3 +61,20 @@ void GameObject::ShowStatus()
 
 	cout << display_code << id_num << " at " << location;
 }
+
+void GameObject::DrawSelf(char* ptr)
+{
+	// Plots GameObject display_code then id_num
+
+	ptr[0] = display_code;
+	ptr[1] = '0' + id_num;
+}
+
+
+// Added member functions
+char GameObject::GetDisplayCode()
+{
+	// Returns display_code
+
+	return display_code;
+}

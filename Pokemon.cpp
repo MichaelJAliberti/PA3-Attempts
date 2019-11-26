@@ -23,7 +23,9 @@ Pokemon::Pokemon(): GameObject('P') // default
 	training_units_to_buy = 0;
 	stamina_points_to_buy = 0;
 	current_center = NULL;
-	current_gym	= NULL;;
+	current_gym	= NULL;
+	is_in_center = false;
+	is_in_gym = false;
 	name = "Default Pokemon";
 	// Announcement
 	cout << "Pokemon default constructed." << endl;
@@ -41,6 +43,8 @@ Pokemon::Pokemon(char in_code): GameObject(in_code)
 	stamina_points_to_buy = 0;
 	current_center = NULL;
 	current_gym	= NULL;
+	is_in_center = false;
+	is_in_gym = false;
 	name = "Less Default Pokemon";
 	// Announcement
 	cout << "Pokemon constructed." << endl;
@@ -59,6 +63,8 @@ Pokemon::Pokemon(string in_name, int in_id, char in_code, unsigned int in_speed,
 	stamina_points_to_buy = 0;
 	current_center = NULL;
 	current_gym	= NULL;
+	is_in_center = false;
+	is_in_gym = false;
 	// Announcement
 	cout << "Pokemon constructed." << endl;
 }
@@ -100,6 +106,10 @@ void Pokemon::StartMovingToCenter(PokemonCenter* center)
 	{
 		// Set target if arrived by normal movement
 		current_center = center;
+		// Set status to in_gym
+		state = IN_CENTER;
+		is_in_center = true;
+		// Announcement
 		cout << display_code << id_num << ": I'm already at the Pokemon Center!" << endl;
 	}
 	else if (state == EXHAUSTED)
@@ -124,6 +134,10 @@ void Pokemon::StartMovingToGym(PokemonGym* gym)
 	{
 		// Establish current gym if got there via normal movement
 		current_gym = gym;
+		// Set status to in_gym
+		state = IN_GYM;
+		is_in_gym = true;
+		// Announcement
 		cout << display_code << id_num << ": I'm already at the Pokemon Gym!" << endl;
 	}
 	else if (state == EXHAUSTED)
@@ -188,7 +202,7 @@ void Pokemon::StartRecoveringStamina(unsigned int num_stamina_points)
 		// If able, change state and determine points to buy
 		state = RECOVERING_STAMINA;
 		cout << display_code << id_num << ": Started recovering " << num_stamina_points	 << " stamina point(s) at Pokemon Center " << current_center->GetId() << endl;
-		if (current_center->GetNumStaminaPointsRemaining() < num_stamina_points	)
+		if (current_center->GetNumStaminaPointsRemaining() < num_stamina_points)
 			stamina_points_to_buy = current_center->GetNumStaminaPointsRemaining();
 		else
 			stamina_points_to_buy = num_stamina_points;
@@ -239,9 +253,12 @@ void Pokemon::ShowStatus()
 		case MOVING:
 			cout << " moving at a speed of " << speed << " to " << destination << " at each step of " << delta << endl;
 			break;
-		// Nothing if exhausted
+		case EXHAUSTED:
+			cout << endl;
+			break;
 		case IN_GYM:
 			cout << " inside Pokemon Gym " << current_gym->GetId() << endl;
+			break;
 		case IN_CENTER:
 			cout << " inside Pokemon Center " << current_center->GetId() << endl;
 			break;
@@ -348,7 +365,7 @@ bool Pokemon::UpdateLocation()
 	// Updates the object’s location while it is moving
 
 	// Check if within 1 step
-	if (fabs(destination.x - location.x) <= delta.x && fabs(destination.y - location.y) <= delta.y)
+	if (fabs(destination.x - location.x) <= fabs(delta.x) && fabs(destination.y - location.y) <= fabs(delta.y))
 	{
 		location = destination;
 		cout << display_code << id_num << ": I'm there!" << endl;
@@ -385,6 +402,13 @@ void Pokemon::SetupDestination(Point2D dest)
 	return;
 }
 
+// Added member functions
+string Pokemon::GetName()
+{
+	// Returns the name of the pokemon
+
+	return name;
+}
 
 // Nonmember functions
 double GetRandomAmountOfPokemonDollars()
